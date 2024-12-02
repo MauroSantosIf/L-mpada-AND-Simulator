@@ -1,3 +1,5 @@
+
+![Simulação da lâmpada AND](img/Captura de tela de 2024-12-02 12-15-28.png)
 # Simulador de Lâmpada - Porta Lógica AND
 
 Este projeto foi desenvolvido como uma simulação interativa para demonstrar o funcionamento de uma **porta lógica AND**. A simulação mostra como uma lâmpada pode ser controlada com base em duas entradas lógicas, onde a lâmpada só acende quando ambas as entradas estão ativadas.
