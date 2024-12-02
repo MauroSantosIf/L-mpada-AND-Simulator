@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulação de Lâmpada com Porta AND</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #1e90ff;
+      margin-top: 20px;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      text-align: center;
+    }
+
+    #lampImage {
+      width: 200px; 
+      height: auto;
+      margin: 20px;
+      transition: transform 0.3s ease-in-out; 
+    }
+
+    #lampImage.ligada {
+      transform: scale(1.3); 
+    }
+
+    .buttons-container {
+      margin: 10px;
+    }
+
+    button {
+      padding: 10px 25px;
+      cursor: pointer;
+      margin: 10px;
+      font-size: 20px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #43b402c4;
+      color: rgb(0, 0, 0);
+    }
+
+    #status {
+      margin-top: 50px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .explanation {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 1, 0, 2);
+      margin-bottom: 30px;
+      font-family: 'Courier New', Courier, monospace;
+    }
+
+    .explanation h2 {
+      color: #333;
+      font-size: 24px;
+    }
+
+    .explanation p {
+      font-size: 16px;
+      color: #555;
+      line-height: 1.6;
+    }
+
+    .explanation ul {
+      text-align: left;
+      margin: 20px auto;
+      width: 80%;
+    }
+
+    .explanation ul li {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+
+  </style>
+</head>
+<body>
+
+  <h1>Simulação de Lâmpada - Porta AND</h1>
+
+  <div class="container">
+
+    <div class="explanation">
+      <h2>O que é uma Porta Lógica AND?</h2>
+      <p>
+        A porta lógica AND é um dos blocos fundamentais da lógica digital. Ela recebe duas ou mais entradas e retorna um valor verdadeiro (1) apenas se todas as entradas forem verdadeiras (1). Caso contrário, o valor retornado será falso (0).
+      </p>
+      <ul>
+        <li>Se ambas as entradas forem verdadeiras (ligadas), a saída será verdadeira (ligada).</li>
+        <li>Se qualquer uma das entradas for falsa (desligada), a saída será falsa (desligada).</li>
+      </ul>
+      <p>Na simulação abaixo, você controlará duas "entradas" que determinam se a lâmpada será ligada ou desligada.</p>
+    </div>
+
+    <div id="lamp">
+      <img id="lampImage" src="./img/desligada.jpg" alt="Lâmpada">
+    </div>
+
+    <div class="buttons-container">
+      <button id="entrada1">False (0)</button>
+      <button id="entrada2">False (0)</button>
+    </div>
+
+    <div id="status">A lâmpada está desligada. Ambas as entradas são falsas.</div>
+  </div>
+
+  <script>
+    const lampImage = document.getElementById('lampImage');
+    const entrada1Button = document.getElementById('entrada1');
+    const entrada2Button = document.getElementById('entrada2');
+    const statusDiv = document.getElementById('status');
+
+    let entrada1Ativa = false;
+    let entrada2Ativa = false;
+
+    
+    function updateLamp() {
+      if (entrada1Ativa && entrada2Ativa) {
+        lampImage.src = './img/ligada.jpg';
+        lampImage.classList.add('ligada');   
+        statusDiv.textContent = 'A lâmpada está acesa. Ambas as entradas são verdadeiras.';
+      } else {
+        lampImage.src = './img/desligada.jpg'; 
+        lampImage.classList.remove('ligada');  
+        statusDiv.textContent = 'A lâmpada está desligada. Será ligada somente se ambos os botões forem verdadeiros .';
+      }
+    }
+
+    
+    entrada1Button.addEventListener('click', () => {
+      entrada1Ativa = !entrada1Ativa;
+      entrada1Button.textContent = `${entrada1Ativa ? 'True (1)' : 'False (0)'}`;
+      updateLamp();
+    });
+
+    entrada2Button.addEventListener('click', () => {
+      entrada2Ativa = !entrada2Ativa;
+      entrada2Button.textContent = `${entrada2Ativa ? 'True (1)' : 'False (0)'}`;
+      updateLamp();
+    });
+
+    updateLamp();
+
+  </script>
+
+</body>
+</html>
